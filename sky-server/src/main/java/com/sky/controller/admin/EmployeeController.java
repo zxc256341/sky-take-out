@@ -72,23 +72,38 @@ public class EmployeeController {
     public Result<String> logout() {
         return Result.success();
     }
+
     @PostMapping
-    public Result save(@RequestBody EmployeeDTO employeedto){
+    public Result save(@RequestBody EmployeeDTO employeedto) {
         Employee employee = new Employee();
         BeanUtils.copyProperties(employeedto, employee);
         employeeService.save(employee);
         return Result.success();
     }
+
     //查询时要返回泛型<PageResult>,其他时候只返回code
     @GetMapping("/page")
-        public Result<PageResult> page (EmployeePageQueryDTO employeePageQueryDTO){
-            PageResult pageResult = employeeService.pageQuery(employeePageQueryDTO);
-            return Result.success(pageResult);
-        }
-        @PostMapping("/status/{status}")
-        public Result updateStatus(@PathVariable Integer status, @RequestParam Long id){
+    public Result<PageResult> page(EmployeePageQueryDTO employeePageQueryDTO) {
+        PageResult pageResult = employeeService.pageQuery(employeePageQueryDTO);
+        return Result.success(pageResult);
+    }
 
-            employeeService.updateStatus(status, id);
-            return Result.success();
-        }
+    @PostMapping("/status/{status}")
+    public Result updateStatus(@PathVariable Integer status, @RequestParam Long id) {
+
+        employeeService.updateStatus(status, id);
+        return Result.success();
+    }
+
+    @GetMapping("/{id}")
+    public Result<Employee> getById(@PathVariable Long id) {
+        Employee employee = employeeService.getById(id);
+        return Result.success(employee);
+    }
+
+    @PutMapping
+    public Result update(@RequestBody EmployeeDTO employeeDTO) {
+        employeeService.update(employeeDTO);
+        return Result.success();
+    }
 }

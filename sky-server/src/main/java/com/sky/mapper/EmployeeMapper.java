@@ -33,5 +33,8 @@ public interface EmployeeMapper {
 
      /* 更新员工信息*/
     void update(Employee employee);
+    /*回显用户信息*/
+    Employee getById(Long id);
+
 }
 

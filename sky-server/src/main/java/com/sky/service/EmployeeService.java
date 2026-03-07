@@ -1,5 +1,6 @@
 package com.sky.service;
 
+import com.sky.dto.EmployeeDTO;
 import com.sky.dto.EmployeeLoginDTO;
 import com.sky.dto.EmployeePageQueryDTO;
 import com.sky.entity.Employee;
@@ -31,4 +32,12 @@ public interface EmployeeService {
      * @param id
      */
     void updateStatus(Integer status, Long id);
+    /**
+     * 根据id查询员工*/
+    Employee getById(Long id);
+    /**
+     * 更新员工信息
+     * @param employeeDTO
+     */
+    void update(EmployeeDTO employeeDTO);
 }
