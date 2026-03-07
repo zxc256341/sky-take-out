@@ -79,10 +79,16 @@ public class EmployeeController {
         employeeService.save(employee);
         return Result.success();
     }
+    //查询时要返回泛型<PageResult>,其他时候只返回code
     @GetMapping("/page")
         public Result<PageResult> page (EmployeePageQueryDTO employeePageQueryDTO){
             PageResult pageResult = employeeService.pageQuery(employeePageQueryDTO);
             return Result.success(pageResult);
         }
+        @PostMapping("/status/{status}")
+        public Result updateStatus(@PathVariable Integer status, @RequestParam Long id){
 
+            employeeService.updateStatus(status, id);
+            return Result.success();
+        }
 }
