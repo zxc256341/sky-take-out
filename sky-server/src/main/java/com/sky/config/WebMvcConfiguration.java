@@ -64,6 +64,10 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
     protected void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/doc.html").addResourceLocations("classpath:/META-INF/resources/");
         registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+        
+        // 添加上传文件的访问路径
+        registry.addResourceHandler("/files/**")
+                .addResourceLocations("file:C:/Users/lenovo/Desktop/file/");
     }
 
 }

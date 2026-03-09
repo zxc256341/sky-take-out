@@ -49,7 +49,7 @@ public class CategoryController {
         categoryService.delete(id);
         return Result.success();
     }
-    @GetMapping
+    @GetMapping("/list")
     public Result<List<Category>> list(Integer type) {
         List<Category> list = categoryService.list(type);
         return Result.success(list);
