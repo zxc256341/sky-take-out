@@ -80,4 +80,14 @@ public class DishController {
         DishDTO dishDTOUpdated = dishService.updateWithFlavor(dishDTO);
         return Result.success(dishDTOUpdated);
     }
+    /**
+     * 套餐管理分页查询
+     * @param categoryId
+     * @return
+     */
+    @GetMapping("/list")
+    public Result<List<DishDTO>> list(Long categoryId){
+        List<DishDTO> list = dishService.list(categoryId);
+        return Result.success(list);
+    }
 }
