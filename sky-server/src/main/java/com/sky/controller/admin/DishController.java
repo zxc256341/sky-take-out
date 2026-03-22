@@ -31,7 +31,7 @@ public class DishController {
     @PostMapping
     public Result<String> save(@RequestBody DishDTO dishDTO){
         dishService.saveWithFlavor(dishDTO);
-        String key = "dish_list_" + dishDTO.getCategoryId();
+        String key = "dish_" + dishDTO.getCategoryId();
         cleanCache(key);
         return Result.success();
 

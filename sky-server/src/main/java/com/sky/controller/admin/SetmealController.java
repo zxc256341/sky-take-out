@@ -10,6 +10,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,6 +29,7 @@ public class SetmealController {
      * @return
      */
     @PostMapping
+    @CacheEvict(cacheNames = "setmealcache",key = "#setmealDTO.categoryId")
     public Result save(@RequestBody SetmealDTO setmealDTO) {
         setmealService.saveWithDish(setmealDTO);
         return Result.success();
@@ -48,6 +50,7 @@ public class SetmealController {
      * @param id
      */
     @PostMapping("/status/{status}")
+    @CacheEvict(cacheNames = "setmealcache",allEntries = true)
     public Result updateStatus(@PathVariable Integer status, Long id) {
         setmealService.updateStatus(status, id);
         return Result.success();
@@ -67,6 +70,7 @@ public class SetmealController {
      * @param setmealDTO
      */
     @PutMapping
+    @CacheEvict(cacheNames = "setmealcache",allEntries = true)
     public Result update(@RequestBody SetmealDTO setmealDTO) {
         setmealService.update(setmealDTO);
         return Result.success();
@@ -76,6 +80,7 @@ public class SetmealController {
      * @param ids
      */
     @DeleteMapping
+    @CacheEvict(cacheNames = "setmealcache",allEntries = true)
     public Result delete(@RequestParam List<Long> ids) {
         setmealService.deleteBatch(ids);
         return Result.success();
