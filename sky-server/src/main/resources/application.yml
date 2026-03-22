@@ -54,5 +54,5 @@ file:
   access-path: http://localhost:8080/files
 
   wechat:
-    app-id: ${sky.wechat.app-id}
+    appid: ${sky.wechat.appid}
     secret: ${sky.wechat.secret}
